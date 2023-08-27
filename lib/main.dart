@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:meal_manager/categories_screen.dart';
 import 'package:meal_manager/meal_screen.dart';
+import 'package:meal_manager/stats_screen.dart';
 
 void main() {
   runApp(
@@ -9,6 +11,12 @@ void main() {
         useMaterial3: true,
       ),
       home: Home(),
+      initialRoute: '/meal',
+      routes: {
+        '/meal': (context) => MealScreen(),
+        '/categories': (context) => CategoriesScreen(),
+        '/stats': (context) => StatsScreen()
+      },
     ),
   );
 }

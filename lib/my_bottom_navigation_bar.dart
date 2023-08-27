@@ -9,7 +9,7 @@ class MyBottomNavigationBar extends StatelessWidget {
     return BottomNavigationBar(
       items: const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          icon: Icon(Icons.format_list_bulleted),
+          icon: Icon(Icons.list),
           label: 'Meals',
         ),
         BottomNavigationBarItem(
@@ -25,17 +25,30 @@ class MyBottomNavigationBar extends StatelessWidget {
         if (index == 0) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => MealScreen()),
+            PageRouteBuilder(
+              pageBuilder: (context, animation1, animation2) => MealScreen(),
+              transitionDuration: Duration.zero,
+              reverseTransitionDuration: Duration.zero,
+            ),
           );
         } else if (index == 1) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => CategoriesScreen()),
+            PageRouteBuilder(
+              pageBuilder: (context, animation1, animation2) =>
+                  CategoriesScreen(),
+              transitionDuration: Duration.zero,
+              reverseTransitionDuration: Duration.zero,
+            ),
           );
         } else if (index == 2) {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => StatsScreen()),
+            PageRouteBuilder(
+              pageBuilder: (context, animation1, animation2) => StatsScreen(),
+              transitionDuration: Duration.zero,
+              reverseTransitionDuration: Duration.zero,
+            ),
           );
         }
       },
