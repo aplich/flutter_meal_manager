@@ -1,9 +1,12 @@
-import 'package:meal_manager/model/meal_category.dart';
-
 class Meal {
+  int? id;
   final String name;
-  final MealCategory category;
-  final int id;
 
-  Meal(this.name, this.category, this.id);
+  Meal({required this.name});
+  Meal.withId({required this.name, required this.id});
+
+  @override
+  String toString() {
+    return 'Meal{id: $id, name: $name}';
+  }
 }
