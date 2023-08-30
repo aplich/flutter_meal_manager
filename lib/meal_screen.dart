@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:meal_manager/app_bar.dart';
 import 'package:meal_manager/database/repository.dart';
 import 'package:meal_manager/model/meal.dart';
-import 'package:meal_manager/my_bottom_navigation_bar.dart';
 
 class MealScreen extends StatefulWidget {
   final Repository repository;
@@ -40,7 +39,6 @@ class _MealScreenState extends State<MealScreen> {
         setState(() {
           mealList.remove(meal);
         });
-
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text("Meal deleted: ${meal.name}"),
@@ -86,14 +84,13 @@ class _MealScreenState extends State<MealScreen> {
         onPressed: () {
           final newMeal = Meal(name: 'New meal ${widget.random.nextInt(9000)}');
           widget.repository.addMeal(newMeal);
-
           setState(() {
             loadMeals();
           });
         },
         child: const Icon(Icons.add),
       ),
-      bottomNavigationBar: MyBottomNavigationBar(),
+      // bottomNavigationBar: MyBottomNavigationBar(),
     );
   }
 }

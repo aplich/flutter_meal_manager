@@ -15,7 +15,7 @@ void main() {
         useMaterial3: true,
       ),
       home: Home(repository: repository),
-      initialRoute: '/meal',
+      initialRoute: '/',
       routes: {
         '/meal': (context) => MealScreen(repository: repository,),
         '/categories': (context) => CategoriesScreen(),
@@ -36,10 +36,62 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  late final MealScreen _mealScreen;
+  late final CategoriesScreen _categoriesScreen;
+  late final StatsScreen _statsScreen;
+
+  static List<Widget> _pages = <Widget>[];
+
+  @override
+  void initState() {
+    super.initState();
+    _mealScreen = MealScreen(repository: widget.repository);
+    _categoriesScreen = CategoriesScreen();
+    _statsScreen = StatsScreen();
+
+    _pages = <Widget>[
+      _mealScreen,
+      _categoriesScreen,
+      _statsScreen,
+    ];
+  }
+
+
+
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: MealScreen(repository: widget.repository),
+      body: Center(
+        child: _pages.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'Meals',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            label: 'Categories',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.assessment),
+            label: 'Stats',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+      ),
+
     );
   }
 }
